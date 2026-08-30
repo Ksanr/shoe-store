@@ -1,0 +1,481 @@
+/* Ограничение ширины контента 1200px */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Header */
+.navbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap !important;
+  gap: 20px;
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-nav .nav-link {
+  white-space: nowrap;
+  padding: 0 !important;
+}
+
+.header-controls-pics {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.header-controls-pic {
+  flex-shrink: 0;
+}
+
+/* для очень узких экранов можно уменьшить отступы */
+@media (max-width: 768px) {
+  .navbar {
+    gap: 10px;
+    flex-wrap: wrap !important;
+  }
+  .navbar-nav {
+    gap: 10px;
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #f8f9fa; /* светлый фон, можно убрать если нужен прозрачный */
+  padding: 30px 0 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.footer-block {
+  margin-bottom: 20px;
+}
+
+.footer-title {
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-list {
+    list-style: none;
+  padding: 0;
+  margin: 12px 0 0 10px;
+}
+
+.footer-list li {
+  margin-bottom: 6px;
+}
+
+.footer-list a {
+  color: #727e86;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-list a:hover {
+  text-decoration: underline;
+}
+
+/* Платёжные системы */
+.footer-pay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 15px;
+}
+
+.footer-pay-systems {
+  width: 46px;
+  height: 28px;
+  border: 2px solid #FFFFFF;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-image: url(/img/footer-sprite.png);
+}
+
+/* Копирайт */
+.footer-copyright p {
+  font-size: 13px;
+  color: #727e86;
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.footer-copyright p:last-child {
+  margin-top: 10px;
+}
+
+/* Контакты */
+.footer-contacts-phone {
+  color: #727e86;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.footer-contacts-working-hours {
+  color: #000000;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.footer-contacts-email {
+  color: #727e86;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Социальные иконки */
+.footer-social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.footer-social-link {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-image: url(/img/footer-sprite.png);
+  background-color: #f0f0f0; /* серый фон для кружочка */
+  transition: background-color 0.2s;
+}
+
+.footer-social-link:hover {
+  background-color: #e0e0e0;
+}
+
+.footer-social-link-twitter {
+  background-position: -107px -42px;
+}
+
+.footer-social-link-vk {
+  background-position: -157px -42px;
+}
+
+/* Карточки товаров одинаковой высоты */
+.catalog-item-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.catalog-item-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-item-card .card-img-top {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+}
+
+.catalog-item-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.catalog-item-card .card-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  min-height: 40px;
+}
+
+.catalog-item-card .card-text {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.catalog-item-card .btn {
+  align-self: flex-start;
+}
+
+/* ===== Product Page ===== */
+.product-image-wrapper {
+  width: 100%;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.product-page-image {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Таблица параметров */
+.product-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.product-table td {
+  width: 50%;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.product-table td:first-child {
+  font-weight: 500;
+  color: #495057;
+  width: 120px;
+  background-color: #f8f9fa;
+}
+
+.product-table td:last-child {
+  color: #212529;
+}
+
+/* Размеры */
+.product-sizes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.sizes-label {
+  font-weight: 500;
+  color: #495057;
+  white-space: nowrap;
+}
+
+.sizes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-btn {
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 15px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.size-btn:hover {
+  background: #e9ecef;
+}
+
+.size-btn.active {
+  background: #727e86;
+  color: #fff;
+}
+
+/* Количество */
+.product-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.quantity-label {
+  font-weight: 500;
+  color: #495057;
+  white-space: nowrap;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f1f3f5;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: #e9ecef;
+}
+
+.qty-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qty-input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+  padding: 4px 0;
+  font-size: 16px;
+  outline: none;
+}
+
+.qty-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.btn-add-to-cart {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.btn-add-to-cart:hover:not(:disabled) {
+  background: #e5533d;
+}
+
+.btn-add-to-cart:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cart Page */
+.cart-table .quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.cart-table .qty-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #f1f3f5;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cart-table .qty-btn:hover:not(:disabled) {
+  background: #e9ecef;
+}
+
+.cart-table .qty-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cart-table .qty-value {
+  width: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.btn-remove {
+  background: #fff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remove:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* Форма заказа */
+.order-form-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+}
+
+.order-form .form-label {
+  font-weight: 500;
+}
+
+.btn-order {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: #e9ecef;
+  color: #6c757d;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-order-active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.btn-order-active:hover {
+  background: #333;
+}
+
+.btn-order-disabled {
+  background: #e9ecef;
+  color: #6c757d;
+  border-color: #ced4da;
+  cursor: not-allowed;
+}
