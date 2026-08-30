@@ -39,11 +39,11 @@ const ContactsPage = () => {
           <div className="row mt-4">
             <div className="col-md-4">
               <h5>Телефон</h5>
-              <p><a href="tel:+78001234567">+7 (800) 123-45-67</a></p>
+              <p><a href="tel:+74957903503">+7 (495) 79 03 5 03</a></p>
             </div>
             <div className="col-md-4">
               <h5>Email</h5>
-              <p><a href="mailto:info@shop.ru">info@shop.ru</a></p>
+              <p><a href="mailto:office@bosanoga.ru">office@bosanoga.ru</a></p>
             </div>
             <div className="col-md-4">
               <h5>Адрес</h5>
