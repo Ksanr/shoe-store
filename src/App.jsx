@@ -10,7 +10,7 @@ import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/shoe-store">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
