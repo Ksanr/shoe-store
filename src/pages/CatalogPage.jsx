@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { fetchCategories } from '../store/slices/categoriesSlice';
-import {
-  fetchItems,
-  resetItems,
-  setCategory,
-  setSearchQuery,
-} from '../store/slices/itemsSlice';
+import { fetchCategories, setActiveCategory } from '../store/slices/categoriesSlice';
+import { fetchItems, resetItems, setSearchQuery } from '../store/slices/itemsSlice';
 import Categories from '../components/Catalog/Categories';
 import ItemList from '../components/Catalog/ItemList';
 import LoadMoreButton from '../components/Catalog/LoadMoreButton';
@@ -19,36 +14,32 @@ const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categories = useSelector((state) => state.categories);
   const itemsState = useSelector((state) => state.items);
+  const [searchInput, setSearchInput] = useState('');
 
-  const initialSearch = searchParams.get('search') || '';
-  const [searchInput, setSearchInput] = useState(initialSearch);
-
-  // При загрузке страницы, если есть параметр search, применяем его
-  useEffect(() => {
-    if (initialSearch) {
-      dispatch(setSearchQuery(initialSearch));
-    }
-  }, []);
-
+  // Загрузка категорий при монтировании
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  // Чтение параметра search из URL при загрузке
+  useEffect(() => {
+    const query = searchParams.get('search') || '';
+    setSearchInput(query);
+    dispatch(setSearchQuery(query));
+  }, [searchParams, dispatch]);
+
+  // Загрузка товаров при изменении категории или поискового запроса
   useEffect(() => {
     dispatch(resetItems());
-    dispatch(
-      fetchItems({
-        categoryId: categories.activeCategory,
-        offset: 0,
-        q: itemsState.q,
-      })
-    );
+    dispatch(fetchItems({
+      categoryId: categories.activeCategory,
+      offset: 0,
+      q: itemsState.q,
+    }));
   }, [categories.activeCategory, itemsState.q, dispatch]);
 
   const handleCategoryChange = (categoryId) => {
-    dispatch(setCategory(categoryId));
-    setSearchInput('');
-    setSearchParams({});
+    dispatch(setActiveCategory(categoryId));
   };
 
   const handleSearchSubmit = (e) => {
@@ -64,13 +55,11 @@ const CatalogPage = () => {
   };
 
   const handleLoadMore = () => {
-    dispatch(
-      fetchItems({
-        categoryId: categories.activeCategory,
-        offset: itemsState.offset,
-        q: itemsState.q,
-      })
-    );
+    dispatch(fetchItems({
+      categoryId: categories.activeCategory,
+      offset: itemsState.offset,
+      q: itemsState.q,
+    }));
   };
 
   if (categories.loading) return <Loader />;
@@ -80,7 +69,7 @@ const CatalogPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h2>Каталог</h2>
+            <h2 className="text-center">Каталог</h2>
 
             {/* Поисковая строка */}
             <form className="catalog-search-form" onSubmit={handleSearchSubmit}>
@@ -108,19 +97,17 @@ const CatalogPage = () => {
               />
             )}
 
-            {/* Список товаров */}
+            {/* Товары */}
             {itemsState.loading && <Loader />}
             {itemsState.error && (
               <ErrorMessage
                 message={itemsState.error}
                 onRetry={() =>
-                  dispatch(
-                    fetchItems({
-                      categoryId: categories.activeCategory,
-                      offset: 0,
-                      q: itemsState.q,
-                    })
-                  )
+                  dispatch(fetchItems({
+                    categoryId: categories.activeCategory,
+                    offset: 0,
+                    q: itemsState.q,
+                  }))
                 }
               />
             )}

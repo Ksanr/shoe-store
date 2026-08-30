@@ -60,7 +60,7 @@ const HomePage = () => {
         <div className="col-12">
           {/* Баннер */}
           <div className="banner">
-            <img src="/img/banner.jpg" className="img-fluid" alt="Баннер" />
+            <img src={`${import.meta.env.BASE_URL}img/banner.jpg`} className="img-fluid" alt="Баннер" />
             <div className="banner-header">
               <span>К весне готовы!</span>
             </div>
