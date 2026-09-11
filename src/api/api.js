@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://ra16-diploma-1.onrender.com/api';
+//const BASE_URL = 'https://ra16-diploma-1.onrender.com/api';
+const BASE_URL = 'http://localhost:7070/api'; //для локального backend`a
 
 export const api = axios.create({
   baseURL: BASE_URL,

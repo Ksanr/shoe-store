@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { fetchCategories, setActiveCategory } from '../store/slices/categoriesSlice';
@@ -16,12 +16,13 @@ const CatalogPage = () => {
   const itemsState = useSelector((state) => state.items);
   const [searchInput, setSearchInput] = useState('');
 
-  // Загрузка категорий при монтировании
+  const scrollPositionRef = useRef(0);
+  const isLoadMoreRef = useRef(false);
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  // Чтение параметра search из URL при загрузке
   useEffect(() => {
     const query = searchParams.get('search') || '';
     setSearchInput(query);
@@ -37,6 +38,15 @@ const CatalogPage = () => {
       q: itemsState.q,
     }));
   }, [categories.activeCategory, itemsState.q, dispatch]);
+
+  // Восстановление позиции скролла после дозагрузки
+  useLayoutEffect(() => {
+    if (isLoadMoreRef.current && scrollPositionRef.current) {
+      window.scrollTo({ top: scrollPositionRef.current, behavior: 'instant' });
+      isLoadMoreRef.current = false;
+      scrollPositionRef.current = 0;
+    }
+  }, [itemsState.items]);
 
   const handleCategoryChange = (categoryId) => {
     dispatch(setActiveCategory(categoryId));
@@ -55,6 +65,9 @@ const CatalogPage = () => {
   };
 
   const handleLoadMore = () => {
+    // Запоминаем позицию и выставляем флаг
+    scrollPositionRef.current = window.scrollY;
+    isLoadMoreRef.current = true;
     dispatch(fetchItems({
       categoryId: categories.activeCategory,
       offset: itemsState.offset,
